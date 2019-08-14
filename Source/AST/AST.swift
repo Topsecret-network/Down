@@ -256,7 +256,7 @@ extension Block : Renderable {
                     paragraphStyle.headIndent = rule
                     
                     // make the prefixes align right to the prefix margin (we push it as much as it is small than the margin)
-                    paragraphStyle.firstLineHeadIndent = prefixMarginWidth - attrPrefix.size().width
+//                    paragraphStyle.firstLineHeadIndent = prefixMarginWidth - attrPrefix.size().width
                     
                     // we want bullet points to line up with the last digit of a number item, not the dot
                     if prefix == "•" {
