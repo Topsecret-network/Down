@@ -315,9 +315,8 @@ extension Block : Renderable {
             
         case .heading(let children, let level):
             let content = children.render(with: style)
-            content.bolden(with: style.headerSize(for: level))
             content.addAttributes(attrs)
-            content.appendBreak()
+            content.appendBreak(attributes: attrs)
             return content
             
         case .thematicBreak:

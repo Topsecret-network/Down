@@ -102,21 +102,24 @@ import UIKit
     var h1Attributes: Attributes {
         return [.markdown: Markdown.h1,
                 .foregroundColor: h1Color ?? baseFontColor,
-                .paragraphStyle: headerParagraphStyle
+                .paragraphStyle: headerParagraphStyle,
+                .font: baseFont.withoutLightWeight.withSize(h1Size).bold
         ]
     }
     
     var h2Attributes: Attributes {
         return [.markdown: Markdown.h2,
                 .foregroundColor: h2Color ?? baseFontColor,
-                .paragraphStyle: headerParagraphStyle
+                .paragraphStyle: headerParagraphStyle,
+                .font: baseFont.withoutLightWeight.withSize(h2Size).bold
         ]
     }
     
     var h3Attributes: Attributes {
         return [.markdown: Markdown.h3,
                 .foregroundColor: h3Color ?? baseFontColor,
-                .paragraphStyle: headerParagraphStyle
+                .paragraphStyle: headerParagraphStyle,
+                .font: baseFont.withoutLightWeight.withSize(h3Size).bold
         ]
     }
     
