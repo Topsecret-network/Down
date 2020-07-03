@@ -245,23 +245,25 @@ extension NSParagraphStyle {
 public extension UIFont {
     
     /// A copy of the font without the light weight.
-    public var withoutLightWeight: UIFont {
+    var withoutLightWeight: UIFont {
         guard fontName.contains("Light") else { return self }
-        guard let name = fontName.split(separator: "-").first else { return self }
-        let fontDesc = UIFontDescriptor(fontAttributes: [.name: name])
-        // create the font again
-        let font = UIFont(descriptor: fontDesc, size: pointSize)
+        
+        // WORKAROUND: remove font weight by re-creating the font using the system font.
+        // This will break if you use Down with a custom font. We should find a better
+	// way to solve this problem, but that probably requires architectural changes.
+        let font = UIFont.systemFont(ofSize: pointSize)
+        
         // preserve italic trait
         return isItalic ? font.italic : font
     }
     
     // MARK: - Trait Querying
     
-    public var isBold: Bool {
+    var isBold: Bool {
         return contains(.traitBold)
     }
     
-    public var isItalic: Bool {
+    var isItalic: Bool {
         return contains(.traitItalic)
     }
     
@@ -271,11 +273,11 @@ public extension UIFont {
     
     // MARK: - Set Traits
     
-    public var bold: UIFont {
+    var bold: UIFont {
         return self.with(.traitBold)
     }
     
-    public var italic: UIFont {
+    var italic: UIFont {
         return self.with(.traitItalic)
     }
     
