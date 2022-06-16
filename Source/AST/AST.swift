@@ -65,18 +65,6 @@ enum ListType : CustomStringConvertible {
     }
 }
 
-enum Block {
-    case document(children: [Block])
-    case blockQuote(items: [Block])
-    case list(items: [Block], type: ListType)
-    case listItem(children: [Block], prefix: String)
-    case codeBlock(text: String)
-    case htmlBlock(text: String)
-    case customBlock(literal: String)
-    case paragraph(children: [Inline])
-    case heading(children: [Inline], level: Int)
-    case thematicBreak
-}
 
 enum Inline {
     case text(text: String)
@@ -89,6 +77,19 @@ enum Inline {
     case strong(children: [Inline])
     case link(children: [Inline], title: String?, url: String?)
     case image(children: [Inline], title: String?, url: String?)
+}
+
+enum Block {
+    case document(children: [Block])
+    case blockQuote(items: [Block])
+    case list(items: [Block], type: ListType)
+    case listItem(children: [Block], prefix: String)
+    case codeBlock(text: String)
+    case htmlBlock(text: String)
+    case customBlock(literal: String)
+    case paragraph(children: [Inline])
+    case heading(children: [Inline], level: Int)
+    case thematicBreak
 }
 
 // MARK: - INITIALIZERS
