@@ -377,13 +377,13 @@ extension Inline : Renderable {
                 }
                 
                 // first ensure the urlStr is valid
-                if let url = getURL(urlStr), Application.shared.canOpenURL(url) {
-                    // overwrite styling to avoid bold, italic, code links
-                    content.addAttributes(style.defaultAttributes)
-                    content.addAttribute(.markdown, value: Markdown.link, range: content.wholeRange)
-                    content.addAttribute(.link, value: url, range: content.wholeRange)
-                    return content
-                }
+//                if let url = getURL(urlStr), UIApplication.shared.canOpenURL(url) {
+//                    // overwrite styling to avoid bold, italic, code links
+//                    content.addAttributes(style.defaultAttributes)
+//                    content.addAttribute(.markdown, value: Markdown.link, range: content.wholeRange)
+//                    content.addAttribute(.link, value: url, range: content.wholeRange)
+//                    return content
+//                }
             }
             
             // the link isn't valid, so we just display the input text

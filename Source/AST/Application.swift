@@ -28,7 +28,7 @@ protocol UIApplicationProtocol {
 }
 
 extension UIApplication: UIApplicationProtocol {}
-
+@available(iOSApplicationExtension, unavailable)
 struct Application {
     static var shared: UIApplicationProtocol = UIApplication.shared
 }

@@ -1,0 +1,6 @@
+framework module libcmark {
+  umbrella header "libcmark.h"
+
+  export *
+  module * { export * }
+}
