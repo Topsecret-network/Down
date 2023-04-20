@@ -26,15 +26,34 @@ extension NSAttributedString.Key {
 
 /// Use as values for `MarkdownIDAttributeName` to be able to easily
 /// identify ranges of markdown in an `NSAttributedString`.
-public struct Markdown: OptionSet, Hashable, CustomStringConvertible {
+public class Markdown: NSObject, OptionSet, NSCoding {
     
-    public init(rawValue: Int) {
+    @objc public func encode(with aCoder: NSCoder) {
+        aCoder.encode(NSNumber(integerLiteral: rawValue), forKey: "rawValue")
+    }
+    
+    @objc required public init?(coder: NSCoder) {
+        guard let rawValue = coder.decodeObject(forKey: "rawValue") as? NSNumber else {
+            return nil
+        }
+        self.rawValue = rawValue.intValue
+    }
+    
+    
+    required public init(rawValue: Int) {
         self.rawValue = rawValue
-        self.hashValue = rawValue.hashValue
     }
     
     public let rawValue: Int
-    public var hashValue: Int
+    
+    public override var hash: Int {
+        return rawValue.hashValue
+    }
+    
+    public override func isEqual(_ object: Any?) -> Bool {
+        guard let other = object as? Markdown else { return false }
+        return self.rawValue == other.rawValue
+    }
     
     public static let none     = Markdown(rawValue: 0)
     public static let h1       = Markdown(rawValue: 1 << 0)
@@ -87,7 +106,7 @@ public struct Markdown: OptionSet, Hashable, CustomStringConvertible {
         }
     }
     
-    public var description: String {
+    public override var description: String {
         switch self {
         case .none:     return "None"
         case .h1:       return "H1"
