@@ -24,8 +24,8 @@ import UIKit
     
     public typealias Attributes = [NSAttributedString.Key : Any]
     
-    @objc public var baseFont = UIFont.systemFont(ofSize: 17)
-    @objc public var baseFontColor = UIColor.black
+    @objc public var baseFont = UIFont.systemFont(ofSize: 16, weight: .regular)
+    @objc public var baseFontColor = UIColor.white
     @objc public var baseParagraphStyle = NSParagraphStyle.default.with(topSpacing: 8, bottomSpacing: 8)
     
     public var codeFont = UIFont(name: "Menlo", size: 17) ?? UIFont.systemFont(ofSize: 17)
