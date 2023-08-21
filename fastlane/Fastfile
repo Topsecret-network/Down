@@ -1,0 +1,38 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+default_platform(:ios)
+
+platform :ios do
+  desc "Generate new localized screenshots"
+
+  lane :release do
+  # 修改你的 .podspec 文件中的版本号
+  version_number = "1.0.0" #或者从其他地方获取
+  sh "sed -i '' 's/s.version.*$/s.version      = \"#{version_number}\"/' ../Down.podspec"
+
+  # 提交更改到 git
+  sh "git add ."
+  sh "git commit -m 'Bump version to #{version_number}'"
+  sh "git tag #{version_number}"
+
+  # 推送更改和 tag 到 git
+  sh "git push origin topsecret"
+  sh "git push origin #{version_number}"
+
+  # 使用 CocoaPods 插件发布到 CocoaPods
+  cocoapods()
+end
+end
